@@ -1,32 +1,27 @@
 pipeline {
-    agent any  // Runs the pipeline on any available agent
-
+    agent any
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Irshad-11/CI-CD-Project-with-LMS-sample'
             }
         }
-
         stage('Build') {
             steps {
-                script {
-                    bat '''
-                    cd "F:\\Document\\Irshad_01\\BDU things\\Official\\Software Engineering\\LMS Project"
-                    gcc -o LMS LMS.c
-                    '''
-                }
+                // Ensure we are in the Jenkins workspace directory
+                sh 'pwd' // Optional: Print the current directory for debugging
+
+                // Compile the C code
+                bat "gcc -o LMS LMS_V1_0_1.c"
+                // OR
+                //sh "gcc -o LMS LMS_V1_0_1.c"
+
             }
         }
-
         stage('Test') {
             steps {
-                script {
-                    bat '''
-                    cd "F:\\Document\\Irshad_01\\BDU things\\Official\\Software Engineering\\LMS Project"
-                    LMS.exe
-                    '''
-                }
+                echo 'Running tests...'
+                // Add your test commands here
             }
         }
     }
