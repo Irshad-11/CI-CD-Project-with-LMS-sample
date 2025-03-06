@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Irshad-11/CI-CD-Project-with-LMS-sample'
+                git branch: 'main', url: 'https://github.com/Irshad-11/CI-CD-Project-with-LMS-sample'
             }
         }
 
