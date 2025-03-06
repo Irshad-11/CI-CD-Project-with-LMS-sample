@@ -8,13 +8,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Ensure we are in the Jenkins workspace directory
-                sh 'pwd' // Optional: Print the current directory for debugging
-
-                // Compile the C code
+                // Compile the C code using the 'bat' step for Windows
                 bat "gcc -o LMS LMS_V1_0_1.c"
-                // OR
-                //sh "gcc -o LMS LMS_V1_0_1.c"
 
             }
         }
